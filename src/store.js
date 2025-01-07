@@ -8,7 +8,7 @@ export const useStore = defineStore("store", {
     showFavorites: false,
     isLoading: false,
     searchPokemon: "",
-    selectedPokemon: '',
+    selectedPokemon: "",
     urlGetPokemons: "https://pokeapi.co/api/v2/pokemon",
   }),
 
@@ -25,13 +25,15 @@ export const useStore = defineStore("store", {
     },
 
     async selectPokemon(pokemon) {
-        this.selectedPokemon = pokemon;
-        console.log(this.selectedPokemon)
+      this.selectedPokemon = pokemon;
+      console.log(this.selectedPokemon);
     },
 
     clearSelectedPokemon() {
-        this.selectedPokemon = null;
+      this.selectedPokemon = null;
     },
+
+    toggleFavorite(pokemon) {},
 
     displayFavorites() {
       this.showFavorites = true;
@@ -39,6 +41,10 @@ export const useStore = defineStore("store", {
 
     hideFavorites() {
       this.showFavorites = false;
+    },
+
+    capitalizeName(name) {
+      return name.charAt(0).toUpperCase() + name.slice(1);
     },
   },
 

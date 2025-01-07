@@ -27,7 +27,10 @@ const handleGoBackHome = () => {
       class="h-screen flex flex-col items-center justify-start mt-20 gap-3"
     >
       <SearchInput />
-      <NotFound v-if="store.pokemonList.length === 0" :goBack="handleGoBackHome" />
+      <NotFound
+        v-if="store.pokemonList.length === 0"
+        :goBack="handleGoBackHome"
+      />
       <PokemonList />
       <FooterList />
     </div>
