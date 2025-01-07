@@ -8,6 +8,7 @@ export const useStore = defineStore("store", {
     showFavorites: false,
     isLoading: false,
     searchPokemon: "",
+    selectedPokemon: '',
     urlGetPokemons: "https://pokeapi.co/api/v2/pokemon",
   }),
 
@@ -23,7 +24,22 @@ export const useStore = defineStore("store", {
       }
     },
 
-    async selectPokemon() {},
+    async selectPokemon(pokemon) {
+        this.selectedPokemon = pokemon;
+        console.log(this.selectedPokemon)
+    },
+
+    clearSelectedPokemon() {
+        this.selectedPokemon = null;
+    },
+
+    displayFavorites() {
+      this.showFavorites = true;
+    },
+
+    hideFavorites() {
+      this.showFavorites = false;
+    },
   },
 
   getters: {},

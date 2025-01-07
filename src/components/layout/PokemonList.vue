@@ -10,7 +10,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-for="pokemon in store.pokemonList">
+  <div v-for="pokemon in store.pokemonList" @click="store.selectPokemon(pokemon)">
     {{ pokemon.name }}
   </div>
 </template>

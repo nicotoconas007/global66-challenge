@@ -5,6 +5,7 @@ import HomePage from "./components/layout/HomePage.vue";
 import PokemonList from "./components/layout/PokemonList.vue";
 import NotFound from "./components/ui/NotFound.vue";
 import SearchInput from "./components/ui/SearchInput.vue";
+import FooterList from "./components/ui/FooterList.vue";
 
 const store = useStore();
 
@@ -28,6 +29,7 @@ const handleGoBackHome = () => {
       <SearchInput />
       <NotFound v-if="store.pokemonList.length === 0" :goBack="handleGoBackHome" />
       <PokemonList />
+      <FooterList />
     </div>
   </div>
 </template>
