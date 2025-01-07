@@ -15,6 +15,7 @@ const handleGoBackHome = () => {
 
 <template>
   <div class="max-w-[570px] m-auto text-[#353535]">
+    <button @click="handleGetStarted">Check</button>
     <HomePage v-if="currentView === 'home'" />
     <div
       v-else-if="currentView === 'list'"
