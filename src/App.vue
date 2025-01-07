@@ -16,6 +16,7 @@ const handleGetStarted = () => {
 };
 const handleGoBackHome = () => {
   currentView.value = "home";
+  store.hideFavorites();
 };
 </script>
 

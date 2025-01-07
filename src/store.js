@@ -4,7 +4,8 @@ import axios from "axios";
 export const useStore = defineStore("store", {
   state: () => ({
     pokemonList: [],
-    pokemonFavorites: [],
+    pokemonFavorites:
+      JSON.parse(localStorage.getItem("pokemonFavorites")) || [],
     showFavorites: false,
     isLoading: false,
     searchPokemon: "",
@@ -16,9 +17,16 @@ export const useStore = defineStore("store", {
     async fetchPokemons() {
       this.isLoading = true;
       try {
-        const response = await axios.get(this.urlGetPokemons);
-        this.pokemonList = response.data.results;
+        const response = await axios.get(`${this.urlGetPokemons}`);
+        this.pokemonList = response.data.results.map((pokemon, index) => ({
+          id: index + 1,
+          name: pokemon.name,
+          isFavorite: this.pokemonFavorites.some(
+            (fav) => fav.name === pokemon.name
+          ),
+        }));
       } catch (error) {
+        console.error("Error", error);
       } finally {
         this.isLoading = false;
       }
@@ -42,6 +50,21 @@ export const useStore = defineStore("store", {
           (fav) => fav.name !== pokemon.name
         );
       }
+
+      const pokemonIndex = this.pokemonList.findIndex(
+        (poke) => poke.name === pokemon.name
+      );
+      if (pokemonIndex !== -1) {
+        this.pokemonList[pokemonIndex] = {
+          ...this.pokemonList[pokemonIndex],
+          isFavorite: pokemon.isFavorite,
+        };
+      }
+
+      localStorage.setItem(
+        "pokemonFavorites",
+        JSON.stringify(this.pokemonFavorites)
+      );
     },
 
     displayFavorites() {
