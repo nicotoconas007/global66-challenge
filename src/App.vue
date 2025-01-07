@@ -28,11 +28,11 @@ const handleGoBackHome = () => {
     >
       <SearchInput />
       <NotFound
-        v-if="store.pokemonList.length === 0"
+        v-if="store.pokemonsToDisplay.length === 0"
         :goBack="handleGoBackHome"
       />
       <PokemonList />
-      <FooterList />
+      <FooterList v-if="store.pokemonsToDisplay.length > 0" />
     </div>
   </div>
 </template>

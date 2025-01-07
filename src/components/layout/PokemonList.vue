@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from "vue";
+import { computed, onMounted } from "vue";
 import { useStore } from "../../store";
 import FavoriteButton from "../buttons/FavoriteButton.vue";
 
@@ -11,6 +11,12 @@ onMounted(() => {
   }
 });
 
+const pokemonsToDisplay = computed(() => store.pokemonsToDisplay);
+
+const selectPokemon = (pokemon) => {
+  store.selectPokemon(pokemon);
+};
+
 const capitalizeName = (pokemon) => {
   return store.capitalizeName(pokemon);
 };
@@ -21,10 +27,10 @@ const capitalizeName = (pokemon) => {
     <div class="flex flex-col gap-2">
       <div class="max-h-[400px] scroll-container">
         <div
-          v-for="pokemon in store.pokemonList"
+          v-for="pokemon in pokemonsToDisplay"
           :key="pokemon.name"
           class="flex justify-between items-center border p-3 bg-white rounded-md"
-          @click.stop="store.selectPokemon(pokemon.name)"
+          @click.stop="selectPokemon(pokemon.name)"
         >
           <span class="font-medium text-[22px] leading-[26px] ml-4">
             {{ capitalizeName(pokemon.name) }}

@@ -57,5 +57,30 @@ export const useStore = defineStore("store", {
     },
   },
 
-  getters: {},
+  getters: {
+    filteredPokemons(state) {
+      if (!state.searchPokemon) {
+        return state.pokemonList;
+      }
+      return state.pokemonList.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(state.searchPokemon.toLowerCase())
+      );
+    },
+
+    filteredFavorites(state) {
+      if (!state.searchPokemon) {
+        return state.pokemonFavorites;
+      }
+      return state.pokemonFavorites.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(state.searchPokemon.toLowerCase())
+      );
+    },
+
+    pokemonsToDisplay(state) {
+      const pokemons = state.showFavorites
+        ? state.filteredFavorites
+        : state.filteredPokemons;
+      return pokemons;
+    },
+  },
 });

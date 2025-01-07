@@ -11,6 +11,6 @@ defineProps({
       <h2 class="font-bold text-4xl">Uh-oh!</h2>
       <p class="font-medium text-xl">You look lost on your journey!</p>
     </div>
-    <BaseButton :label="'Go Back Home'" :onClick="goBack" />
+    <BaseButton class="mt-10" :label="'Go Back Home'" :onClick="goBack" />
   </div>
 </template>
