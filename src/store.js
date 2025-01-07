@@ -33,7 +33,16 @@ export const useStore = defineStore("store", {
       this.selectedPokemon = null;
     },
 
-    toggleFavorite(pokemon) {},
+    toggleFavorite(pokemon) {
+      pokemon.isFavorite = !pokemon.isFavorite;
+      if (pokemon.isFavorite) {
+        this.pokemonFavorites.push(pokemon);
+      } else {
+        this.pokemonFavorites = this.pokemonFavorites.filter(
+          (fav) => fav.name !== pokemon.name
+        );
+      }
+    },
 
     displayFavorites() {
       this.showFavorites = true;
