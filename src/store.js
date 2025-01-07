@@ -17,7 +17,6 @@ export const useStore = defineStore("store", {
       try {
         const response = await axios.get(this.urlGetPokemons);
         this.pokemonList = response.data.results;
-        console.log(this.pokemonList)
       } catch (error) {
       } finally {
         this.isLoading = false;

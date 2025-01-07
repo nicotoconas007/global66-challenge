@@ -15,8 +15,7 @@ const handleGoBackHome = () => {
 
 <template>
   <div class="max-w-[570px] m-auto text-[#353535]">
-    <button @click="handleGetStarted">Check</button>
-    <HomePage v-if="currentView === 'home'" />
+    <HomePage :start="handleGetStarted" v-if="currentView === 'home'" />
     <div
       v-else-if="currentView === 'list'"
       class="h-screen flex flex-col items-center justify-start mt-20 gap-3"
