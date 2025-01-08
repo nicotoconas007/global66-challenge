@@ -47,7 +47,7 @@ export const useStore = defineStore("store", {
           types: response.data.types
             .map((typeInfo) => typeInfo.type.name)
             .join(", "),
-          sprite: response.data.sprites.front_default,
+          sprite: response.data.sprites.other["official-artwork"].front_default,
           isFavorite: this.pokemonFavorites.some(
             (fav) => fav.name === pokemonName
           ),

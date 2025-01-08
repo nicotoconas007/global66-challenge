@@ -49,7 +49,10 @@ const capitalizeName = (name) => {
 </script>
 
 <template>
-  <PokemonCard :pokemon="selectedPokemon" v-if="selectedPokemon" />
+  <div v-if="selectedPokemon">
+    <PokemonCard :pokemon="selectedPokemon" />
+  </div>
+
   <div class="w-full px-6 sm:p-0">
     <div
       class="h-[74vh] 2xl:h-[77vh] flex flex-col gap-2 scroll-container"
