@@ -5,9 +5,9 @@ const store = useStore();
 </script>
 
 <template>
-  <div class="mb-10 relative w-full pl-6 pr-10 sm:pl-0 sm:pr-4">
+  <div class="mb-10 relative w-full text-[16px] leading-4 px-6 sm:px-0">
     <div class="absolute left-8 sm:left-2 top-[60%] transform -translate-y-1/2">
-      <i class="fas fa-search text-gray-500"></i>
+      <i class="fas fa-search text-[#BFBFBF]"></i>
     </div>
     <input
       v-model="store.searchPokemon"

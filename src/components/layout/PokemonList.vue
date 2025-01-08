@@ -58,7 +58,7 @@ const capitalizeName = (name) => {
       <div
         v-for="pokemon in visiblePokemons"
         :key="pokemon.name"
-        class="flex justify-between items-center border p-2 bg-white rounded-md"
+        class="flex justify-between items-center border p-2 bg-white rounded-md cursor-pointer"
         @click.stop="selectPokemon(pokemon.name)"
       >
         <span class="font-medium text-[22px] leading-[26px] ml-4">
@@ -73,7 +73,6 @@ const capitalizeName = (name) => {
 <style scoped>
 .scroll-container {
   overflow-y: auto;
-  padding-right: 10px;
 }
 
 .scroll-container::-webkit-scrollbar {

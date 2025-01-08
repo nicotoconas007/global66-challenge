@@ -45,16 +45,25 @@ const copyToClipBoard = () => {
 
 <template>
   <div
-    class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+    class="fixed inset-0 flex items-center justify-center pb-5 bg-black bg-opacity-50 z-50"
   >
     <div
-      class="max-w-[560px] mx-7 sm:mx-16 xl:mx-0 bg-white border border-gray-200 rounded-lg shadow"
+      class="relative w-[560px] mx-7 sm:mx-16 xl:mx-0 bg-white rounded-md shadow"
     >
-      <img class="rounded-t-lg" src="/background-card.png" alt="Background" />
-      <div class="p-5">
-        <ul class="flex flex-col justify-start items-start gap-3 list-none">
+      <button
+        @click="clearSelectedPokemon"
+        class="absolute text-md lead font-bold text-[#81CDF9] hover:opacity-80 right-3 top-2 bg-white rounded-full w-6"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div
+        class="bg-[url('/background-card.png')] bg-cover bg-center h-[200px] rounded-t-md"
+      >
+      </div>
+      <div class="px-5 pb-5 pt-3">
+        <ul class="flex flex-col justify-start items-start list-none">
           <li
-            class="w-full"
+            class="w-full px-2"
             v-for="(detail, index) in pokemonDetails"
             :key="index"
           >
@@ -64,9 +73,7 @@ const copyToClipBoard = () => {
         <div class="flex justify-between items-center mt-5">
           <BaseButton
             :onClick="copyToClipBoard"
-            :label="
-              copied ? 'Copied to clipboard' : 'Share to my friends'
-            "
+            :label="copied ? 'Copied to clipboard' : 'Share to my friends'"
             :padding="'py-2.5 px-5'"
             :disabled="copied"
             :icon="copied ? 'fa-solid fa-check' : ''"
