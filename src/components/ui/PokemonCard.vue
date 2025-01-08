@@ -2,13 +2,38 @@
 import { useStore } from "../../store";
 import FavoriteButton from "../buttons/FavoriteButton.vue";
 import BaseButton from "../buttons/BaseButton.vue";
-defineProps({
+import PokemonDetailCard from "./PokemonDetailCard.vue";
+
+const pokemonProps = defineProps({
   pokemon: Object,
+  required: true,
 });
 
 const store = useStore();
+
 const clearSelectedPokemon = () => {
   store.clearSelectedPokemon();
+};
+
+const capitalizeName = (name) => {
+  return store.capitalizeName(name);
+};
+
+const pokemonDetails = [
+  { label: "Name", value: pokemonProps.pokemon.name },
+  { label: "Weight", value: pokemonProps.pokemon.weight },
+  { label: "Height", value: pokemonProps.pokemon.height },
+  { label: "Types", value: pokemonProps.pokemon.types },
+];
+
+const copyToClipBoard = () => {
+  const pokemonInfo = pokemonDetails
+    .map(({ label, value }) => `${label}: ${capitalizeName(value)}`)
+    .join(", ");
+
+  navigator.clipboard.writeText(pokemonInfo).then(() => {
+    console.log("Copied");
+  });
 };
 </script>
 
@@ -17,26 +42,26 @@ const clearSelectedPokemon = () => {
     class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
   >
     <div
-      @click.stop
       class="max-w-[560px] mx-7 sm:mx-16 xl:mx-0 bg-white border border-gray-200 rounded-lg shadow"
     >
       <img class="rounded-t-lg" src="/background-card.png" alt="Background" />
       <div class="p-5">
         <ul class="flex flex-col justify-start items-start gap-3 list-none">
-          <li class="py-2 border-b border-gray-[#bfbfbf]">
-            Name: {{ pokemon.name }}
+          <li
+            class="w-full"
+            v-for="(detail, index) in pokemonDetails"
+            :key="index"
+          >
+            <PokemonDetailCard :label="detail.label" :value="detail.value" />
           </li>
-          <li class="py-2 border-b border-gray-[#bfbfbf]">
-            Weight: {{ pokemon.weight }}
-          </li>
-          <li class="py-2 border-b border-gray-[#bfbfbf]">
-            Height: {{ pokemon.height }}
-          </li>
-          <li class="py-2">Types: {{ pokemon.types }}</li>
         </ul>
         <div class="flex justify-between items-center mt-5">
-          <BaseButton :label="'Share to my friends'" :padding="'py-2.5 px-5'" />
-          <FavoriteButton :pokemon="pokemon" />
+          <BaseButton
+            :onClick="copyToClipBoard"
+            :label="'Share to my friends'"
+            :padding="'py-2.5 px-5'"
+          />
+          <FavoriteButton :pokemon="pokemonProps.pokemon" />
         </div>
       </div>
     </div>

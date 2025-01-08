@@ -20,6 +20,6 @@ defineProps({
       Trainers in the Pokémon world.
     </p>
 
-    <BaseButton :label="'Get started'" :onclick="start" />
+    <BaseButton :label="'Get started'" :onClick="start" />
   </div>
 </template>

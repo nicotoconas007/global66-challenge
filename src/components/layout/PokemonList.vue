@@ -43,8 +43,8 @@ const selectPokemon = (pokemon) => {
   store.selectPokemon(pokemon);
 };
 
-const capitalizeName = (pokemon) => {
-  return store.capitalizeName(pokemon);
+const capitalizeName = (name) => {
+  return store.capitalizeName(name);
 };
 </script>
 

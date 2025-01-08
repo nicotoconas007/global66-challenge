@@ -103,7 +103,14 @@ export const useStore = defineStore("store", {
     },
 
     capitalizeName(name) {
-      return name.charAt(0).toUpperCase() + name.slice(1);
+      return typeof name === "string"
+        ? name
+            .split(",")
+            .map((word) =>
+              word.trim().replace(/^(\w)/, (match) => match.toUpperCase())
+            )
+            .join(", ")
+        : name;
     },
   },
 

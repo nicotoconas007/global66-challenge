@@ -2,6 +2,7 @@
 import { useStore } from "../../store";
 defineProps({
   pokemon: Object,
+  required: true,
 });
 
 const store = useStore();
