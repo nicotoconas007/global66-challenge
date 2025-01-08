@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from "vue";
 import { useStore } from "../../store";
 import FavoriteButton from "../buttons/FavoriteButton.vue";
 import BaseButton from "../buttons/BaseButton.vue";
@@ -10,6 +11,8 @@ const pokemonProps = defineProps({
 });
 
 const store = useStore();
+
+const copied = ref(false);
 
 const clearSelectedPokemon = () => {
   store.clearSelectedPokemon();
@@ -32,7 +35,10 @@ const copyToClipBoard = () => {
     .join(", ");
 
   navigator.clipboard.writeText(pokemonInfo).then(() => {
-    console.log("Copied");
+    copied.value = true;
+    setTimeout(() => {
+      copied.value = false;
+    }, 2000);
   });
 };
 </script>
@@ -58,8 +64,12 @@ const copyToClipBoard = () => {
         <div class="flex justify-between items-center mt-5">
           <BaseButton
             :onClick="copyToClipBoard"
-            :label="'Share to my friends'"
+            :label="
+              copied ? 'Copied to clipboard' : 'Share to my friends'
+            "
             :padding="'py-2.5 px-5'"
+            :disabled="copied"
+            :icon="copied ? 'fa-solid fa-check' : ''"
           />
           <FavoriteButton :pokemon="pokemonProps.pokemon" />
         </div>

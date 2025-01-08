@@ -33,7 +33,7 @@ defineProps({
       padding,
       width,
       'rounded-[60px] bg-[#F22539] hover:bg-[#C00E20] text-white text-lg leading-[22px] font-bold',
-      { 'opacity-50 cursor-not-allowed hover:bg-slate-300': disabled },
+      { 'opacity-50 cursor-not-allowed': disabled },
     ]"
   >
     <i v-if="icon" :class="[icon, 'mr-2']"></i>
