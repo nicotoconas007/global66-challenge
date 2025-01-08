@@ -19,7 +19,9 @@ const hideFavorites = () => {
 </script>
 
 <template>
-  <div class="flex justify-center fixed bottom-0 left-0 gap-4 w-screen bg-white py-5 pr-8 pl-5 shadow-2xl">
+  <div
+    class="flex justify-center fixed bottom-0 left-0 gap-4 w-screen bg-white py-5 pr-8 pl-5 shadow-2xl"
+  >
     <BaseButton
       :class="{
         'bg-[#BFBFBF]': showFavorites,

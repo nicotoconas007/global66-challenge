@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useStore } from "../../store";
 import FavoriteButton from "../buttons/FavoriteButton.vue";
 
@@ -13,6 +13,31 @@ onMounted(() => {
 
 const pokemonsToDisplay = computed(() => store.pokemonsToDisplay);
 
+const visibleCount = ref(20);
+
+const visiblePokemons = computed(() => {
+  return pokemonsToDisplay.value.slice(0, visibleCount.value);
+});
+
+const loadMorePokemons = () => {
+  if (visibleCount.value < pokemonsToDisplay.value.length) {
+    visibleCount.value += 20;
+  }
+};
+
+const onScroll = (event) => {
+  const scrollContainer = event.target;
+  const isAtBottom =
+    scrollContainer.scrollHeight ===
+    scrollContainer.scrollTop + scrollContainer.clientHeight;
+
+  if (isAtBottom) {
+    loadMorePokemons();
+  }
+};
+
+const selectedPokemon = computed(() => store.selectedPokemon);
+
 const selectPokemon = (pokemon) => {
   store.selectPokemon(pokemon);
 };
@@ -24,9 +49,12 @@ const capitalizeName = (pokemon) => {
 
 <template>
   <div class="w-full px-6 sm:p-0">
-    <div class="h-[74vh] 2xl:h-[77vh] flex flex-col gap-2 scroll-container">
+    <div
+      class="h-[74vh] 2xl:h-[77vh] flex flex-col gap-2 scroll-container"
+      @scroll="onScroll"
+    >
       <div
-        v-for="pokemon in pokemonsToDisplay"
+        v-for="pokemon in visiblePokemons"
         :key="pokemon.name"
         class="flex justify-between items-center border p-2 bg-white rounded-md"
         @click.stop="selectPokemon(pokemon.name)"

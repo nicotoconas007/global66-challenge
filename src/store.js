@@ -17,7 +17,7 @@ export const useStore = defineStore("store", {
     async fetchPokemons() {
       this.isLoading = true;
       try {
-        const response = await axios.get(`${this.urlGetPokemons}`);
+        const response = await axios.get(`${this.urlGetPokemons}/?limit=151`);
         this.pokemonList = response.data.results.map((pokemon, index) => ({
           id: index + 1,
           name: pokemon.name,
@@ -59,6 +59,10 @@ export const useStore = defineStore("store", {
           ...this.pokemonList[pokemonIndex],
           isFavorite: pokemon.isFavorite,
         };
+      }
+
+      if (this.pokemonFavorites.length === 0) {
+        this.showFavorites = false;
       }
 
       localStorage.setItem(
