@@ -16,6 +16,7 @@ export const useStore = defineStore("store", {
   actions: {
     async fetchPokemons() {
       this.isLoading = true;
+
       try {
         const response = await axios.get(`${this.urlGetPokemons}/?limit=151`);
         this.pokemonList = response.data.results.map((pokemon, index) => ({
@@ -32,9 +33,30 @@ export const useStore = defineStore("store", {
       }
     },
 
-    async selectPokemon(pokemon) {
-      this.selectedPokemon = pokemon;
-      console.log(this.selectedPokemon);
+    async selectPokemon(pokemonName) {
+      this.isLoading = true;
+
+      try {
+        const response = await axios.get(
+          `${this.urlGetPokemons}/${pokemonName}`
+        );
+        this.selectedPokemon = {
+          name: response.data.name,
+          weight: response.data.weight,
+          height: response.data.height,
+          types: response.data.types
+            .map((typeInfo) => typeInfo.type.name)
+            .join(", "),
+          sprite: response.data.sprites.front_default,
+          isFavorite: this.pokemonFavorites.some(
+            (fav) => fav.name === pokemonName
+          ),
+        };
+      } catch (error) {
+        console.error("Error", error);
+      } finally {
+        this.isLoading = false;
+      }
     },
 
     clearSelectedPokemon() {
@@ -43,6 +65,7 @@ export const useStore = defineStore("store", {
 
     toggleFavorite(pokemon) {
       pokemon.isFavorite = !pokemon.isFavorite;
+
       if (pokemon.isFavorite) {
         this.pokemonFavorites.push(pokemon);
       } else {

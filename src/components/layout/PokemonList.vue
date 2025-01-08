@@ -2,6 +2,7 @@
 import { computed, onMounted, ref } from "vue";
 import { useStore } from "../../store";
 import FavoriteButton from "../buttons/FavoriteButton.vue";
+import PokemonCard from "../ui/PokemonCard.vue";
 
 const store = useStore();
 
@@ -48,6 +49,7 @@ const capitalizeName = (pokemon) => {
 </script>
 
 <template>
+  <PokemonCard :pokemon="selectedPokemon" v-if="selectedPokemon"/>
   <div class="w-full px-6 sm:p-0">
     <div
       class="h-[74vh] 2xl:h-[77vh] flex flex-col gap-2 scroll-container"

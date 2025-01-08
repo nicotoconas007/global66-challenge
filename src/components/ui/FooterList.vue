@@ -24,7 +24,7 @@ const hideFavorites = () => {
   >
     <BaseButton
       :class="{
-        'bg-[#BFBFBF]': showFavorites,
+        'bg-[#bfbfbf]': showFavorites,
       }"
       :label="'All'"
       :onClick="hideFavorites"
@@ -34,7 +34,7 @@ const hideFavorites = () => {
     />
     <BaseButton
       :class="{
-        'bg-[#BFBFBF]': !showFavorites,
+        'bg-[#bfbfbf]': !showFavorites,
       }"
       :label="'Favorites'"
       :onclick="displayFavorites"
