@@ -25,7 +25,7 @@ const handleGoBackHome = () => {
     <HomePage :start="handleGetStarted" v-if="currentView === 'home'" />
     <div
       v-else-if="currentView === 'list'"
-      class="h-screen flex flex-col items-center justify-start mt-20 gap-3"
+      class="flex flex-col items-center justify-start mt-10 "
     >
       <SearchInput />
       <NotFound

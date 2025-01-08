@@ -9,7 +9,7 @@ defineProps({
   <div
     class="h-screen text-center flex flex-col justify-center items-center gap-8 p-2 text-[#353535]"
   >
-    <div class="mb-8 max-w-[325px]">
+    <div class="max-w-[325px]">
       <img src="/pikachu-logo.png" alt="pikachu-logo" />
     </div>
 

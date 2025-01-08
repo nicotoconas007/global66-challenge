@@ -23,20 +23,18 @@ const capitalizeName = (pokemon) => {
 </script>
 
 <template>
-  <div class="w-full p-6 xl:p-0">
-    <div class="flex flex-col gap-2">
-      <div class="max-h-[400px] scroll-container">
-        <div
-          v-for="pokemon in pokemonsToDisplay"
-          :key="pokemon.name"
-          class="flex justify-between items-center border p-3 bg-white rounded-md"
-          @click.stop="selectPokemon(pokemon.name)"
-        >
-          <span class="font-medium text-[22px] leading-[26px] ml-4">
-            {{ capitalizeName(pokemon.name) }}
-          </span>
-          <FavoriteButton :pokemon="pokemon" />
-        </div>
+  <div class="w-full px-6 sm:p-0">
+    <div class="h-[74vh] 2xl:h-[77vh] flex flex-col gap-2 scroll-container">
+      <div
+        v-for="pokemon in pokemonsToDisplay"
+        :key="pokemon.name"
+        class="flex justify-between items-center border p-2 bg-white rounded-md"
+        @click.stop="selectPokemon(pokemon.name)"
+      >
+        <span class="font-medium text-[22px] leading-[26px] ml-4">
+          {{ capitalizeName(pokemon.name) }}
+        </span>
+        <FavoriteButton :pokemon="pokemon" />
       </div>
     </div>
   </div>
