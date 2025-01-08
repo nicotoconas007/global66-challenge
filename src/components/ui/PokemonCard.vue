@@ -57,10 +57,14 @@ const copyToClipBoard = () => {
         <i class="fa-solid fa-xmark"></i>
       </button>
       <div
-        class="bg-[url('/background-card.png')] bg-cover bg-center h-[220px] rounded-t-md"
+        class="bg-[url(background-card.png)] bg-cover bg-center h-[220px] rounded-t-md"
       >
         <div class="h-full flex justify-center items-center">
-          <img :src="pokemon.sprite" alt="Pokemon Image" width="170" />
+          <img        
+            :src="pokemon.sprite"
+            alt="Pokemon Image"
+            width="170"
+          />
         </div>
       </div>
       <div class="px-5 pb-5 pt-3">
