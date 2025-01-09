@@ -37,7 +37,7 @@ const capitalizeName = (name) => {
 </script>
 
 <template>
-  <div v-if="selectedPokemon">
+  <div v-if="selectedPokemon && !store.isLoading">
     <PokemonCard :pokemon="selectedPokemon" />
   </div>
 

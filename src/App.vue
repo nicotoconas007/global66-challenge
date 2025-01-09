@@ -23,6 +23,8 @@ const handleGoBackHome = () => {
 
 const pokemonsToDisplay = computed(() => store.pokemonsToDisplay);
 
+const hasPokemons = computed(() => pokemonsToDisplay.value.length > 0);
+
 const isLoading = computed(() => store.isLoading);
 </script>
 
@@ -33,16 +35,16 @@ const isLoading = computed(() => store.isLoading);
   <div class="max-w-[570px] m-auto text-[#353535]">
     <HomePage :start="handleGetStarted" v-if="currentView === 'home'" />
     <div
-      v-else-if="currentView === 'list' && !isLoading"
+      v-else-if="currentView === 'list'"
       class="flex flex-col items-center justify-start mt-10"
     >
       <SearchInput />
       <NotFound
-        v-if="pokemonsToDisplay.length === 0"
+        v-if="!hasPokemons && !isLoading"
         :goBack="handleGoBackHome"
       />
       <PokemonList />
-      <FooterList v-if="pokemonsToDisplay.length > 0" />
+      <FooterList v-if="hasPokemons" />
     </div>
   </div>
 </template>
