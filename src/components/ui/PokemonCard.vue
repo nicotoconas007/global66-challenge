@@ -57,7 +57,7 @@ const copyToClipBoard = () => {
         <i class="fa-solid fa-xmark"></i>
       </button>
       <div
-        class="bg-[url(background-card.png)] bg-cover bg-center h-[220px] rounded-t-md"
+        class="bg-[url(/background-card.png)] bg-cover bg-center h-[220px] rounded-t-md"
       >
         <div class="h-full flex justify-center items-center">
           <img        

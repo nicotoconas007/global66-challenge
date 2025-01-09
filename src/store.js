@@ -19,7 +19,7 @@ export const useStore = defineStore("store", {
       this.isLoading = true;
 
       try {
-        const response = await axios.get(`${this.urlGetPokemons}/?limit=151`);
+        const response = await axios.get(`${this.urlGetPokemons}/?limit=1200`);
         this.pokemonList = response.data.results.map((pokemon, index) => ({
           id: index + 1,
           name: pokemon.name,
