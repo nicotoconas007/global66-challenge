@@ -7,14 +7,12 @@ import PokemonCard from "../ui/PokemonCard.vue";
 const store = useStore();
 
 onMounted(() => {
-  if (store.pokemonList.length === 0) {
+  if (store.pokemonList.length === 0 && !store.error) {
     store.fetchPokemons();
   }
 });
 
 const pokemonsToDisplay = computed(() => store.pokemonsToDisplay);
-
-
 
 const onScroll = (event) => {
   const scrollContainer = event.target;
@@ -44,11 +42,11 @@ const capitalizeName = (name) => {
   </div>
 
   <div class="w-full px-6 sm:p-0">
-    <div
+    <ul
       class="h-[74vh] 2xl:h-[77vh] flex flex-col gap-2 scroll-container"
       @scroll="onScroll"
     >
-      <div
+      <li
         v-for="pokemon in pokemonsToDisplay"
         :key="pokemon.name"
         class="flex justify-between items-center border p-2 bg-white rounded-md cursor-pointer"
@@ -58,8 +56,8 @@ const capitalizeName = (name) => {
           {{ capitalizeName(pokemon.name) }}
         </span>
         <FavoriteButton :pokemon="pokemon" />
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
 </template>
 

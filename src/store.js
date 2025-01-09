@@ -12,6 +12,7 @@ export const useStore = defineStore("store", {
     selectedPokemon: "",
     urlGetPokemons: "https://pokeapi.co/api/v2/pokemon",
     visibleCount: 20,
+    error: false,
   }),
 
   actions: {
@@ -28,7 +29,8 @@ export const useStore = defineStore("store", {
           ),
         }));
       } catch (error) {
-        console.error("Error", error);
+        console.error("Error", error.message);
+        this.error = true;
       } finally {
         this.isLoading = false;
       }
@@ -97,10 +99,12 @@ export const useStore = defineStore("store", {
 
     displayFavorites() {
       this.showFavorites = true;
+      this.searchPokemon = "";
     },
 
     hideFavorites() {
       this.showFavorites = false;
+      this.searchPokemon = "";
     },
 
     capitalizeName(name) {
