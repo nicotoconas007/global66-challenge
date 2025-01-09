@@ -17,7 +17,8 @@ const handleGetStarted = () => {
 };
 const handleGoBackHome = () => {
   currentView.value = "home";
-  store.hideFavorites();
+  store.toggleShowFavorites(false);
+  store.error = false;
 };
 
 const pokemonsToDisplay = computed(() => store.pokemonsToDisplay);
@@ -26,10 +27,7 @@ const isLoading = computed(() => store.isLoading);
 </script>
 
 <template>
-  <div
-    v-if="isLoading"
-    class="fixed inset-0 flex items-center justify-center"
-  >
+  <div v-if="isLoading" class="fixed inset-0 flex items-center justify-center">
     <Loader class="w-16 h-16 animate-spin" />
   </div>
   <div class="max-w-[570px] m-auto text-[#353535]">

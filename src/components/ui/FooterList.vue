@@ -9,12 +9,16 @@ const hasFavorites = computed(() => store.pokemonFavorites.length > 0);
 
 const showFavorites = computed(() => store.showFavorites);
 
-const displayFavorites = () => {
-  store.displayFavorites();
+const toggleShowFavorites = (show) => {
+  store.toggleShowFavorites(show);
 };
 
-const hideFavorites = () => {
-  store.hideFavorites();
+const show = () => {
+  toggleShowFavorites(true);
+};
+
+const hide = () => {
+  toggleShowFavorites(false);
 };
 </script>
 
@@ -27,7 +31,7 @@ const hideFavorites = () => {
         'bg-[#bfbfbf]': showFavorites,
       }"
       :label="'All'"
-      :onClick="hideFavorites"
+      :onClick="hide"
       :icon="'fas fa-list'"
       :width="'w-full sm:w-[270px]'"
       :padding="'py-2'"
@@ -37,7 +41,7 @@ const hideFavorites = () => {
         'bg-[#bfbfbf]': !showFavorites,
       }"
       :label="'Favorites'"
-      :onclick="displayFavorites"
+      :onclick="show"
       :disabled="!hasFavorites"
       :icon="'fas fa-star'"
       :width="'w-full sm:w-[270px]'"

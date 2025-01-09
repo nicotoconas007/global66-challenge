@@ -88,7 +88,7 @@ export const useStore = defineStore("store", {
       }
 
       if (this.pokemonFavorites.length === 0) {
-        this.hideFavorites();
+        this.toggleShowFavorites(false);
       }
 
       localStorage.setItem(
@@ -97,13 +97,8 @@ export const useStore = defineStore("store", {
       );
     },
 
-    displayFavorites() {
-      this.showFavorites = true;
-      this.searchPokemon = "";
-    },
-
-    hideFavorites() {
-      this.showFavorites = false;
+    toggleShowFavorites(show) {
+      this.showFavorites = show;
       this.searchPokemon = "";
     },
 
