@@ -1,6 +1,6 @@
 # Pokémon App
 ## Descripción
-Esta aplicación utiliza la PokéAPI para mostrar una lista de Pokémons, gestionar favoritos y ver información detallada de cada Pokémons. El objetivo principal fue implementar una solución limpia, eficiente y escalable mas allá de que el proyecto en si es pequeño.
+Esta aplicación utiliza la PokéAPI para mostrar una lista de Pokémons, gestionar favoritos y ver información detallada de cada Pokémon. El objetivo principal fue implementar una solución limpia, eficiente y escalable mas allá de que el proyecto en si es pequeño.
 
 ## Tecnologías Utilizadas
 - Vite con Vue 3: Elegí Vite por su rapidez y simplicidad en el desarrollo frente a Vue CLI, lo que mejora la experiencia durante el desarrollo y la carga inicial del proyecto.
