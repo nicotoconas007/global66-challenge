@@ -16,9 +16,10 @@ const pokemonsToDisplay = computed(() => store.pokemonsToDisplay);
 
 const onScroll = (event) => {
   const scrollContainer = event.target;
+  const tolerance = 5;
   const isAtBottom =
-    scrollContainer.scrollHeight ===
-    scrollContainer.scrollTop + scrollContainer.clientHeight;
+    scrollContainer.scrollHeight <=
+    scrollContainer.scrollTop + scrollContainer.clientHeight + tolerance;
 
   if (isAtBottom) {
     store.loadMorePokemons();
