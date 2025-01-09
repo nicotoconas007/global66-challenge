@@ -14,17 +14,7 @@ onMounted(() => {
 
 const pokemonsToDisplay = computed(() => store.pokemonsToDisplay);
 
-const visibleCount = ref(20);
 
-const visiblePokemons = computed(() => {
-  return pokemonsToDisplay.value.slice(0, visibleCount.value);
-});
-
-const loadMorePokemons = () => {
-  if (visibleCount.value < pokemonsToDisplay.value.length) {
-    visibleCount.value += 20;
-  }
-};
 
 const onScroll = (event) => {
   const scrollContainer = event.target;
@@ -33,7 +23,7 @@ const onScroll = (event) => {
     scrollContainer.scrollTop + scrollContainer.clientHeight;
 
   if (isAtBottom) {
-    loadMorePokemons();
+    store.loadMorePokemons();
   }
 };
 
@@ -59,7 +49,7 @@ const capitalizeName = (name) => {
       @scroll="onScroll"
     >
       <div
-        v-for="pokemon in visiblePokemons"
+        v-for="pokemon in pokemonsToDisplay"
         :key="pokemon.name"
         class="flex justify-between items-center border p-2 bg-white rounded-md cursor-pointer"
         @click.stop="selectPokemon(pokemon.name)"

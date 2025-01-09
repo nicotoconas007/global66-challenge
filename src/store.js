@@ -11,6 +11,7 @@ export const useStore = defineStore("store", {
     searchPokemon: "",
     selectedPokemon: "",
     urlGetPokemons: "https://pokeapi.co/api/v2/pokemon",
+    visibleCount: 20,
   }),
 
   actions: {
@@ -67,7 +68,7 @@ export const useStore = defineStore("store", {
       pokemon.isFavorite = !pokemon.isFavorite;
 
       if (pokemon.isFavorite) {
-        this.pokemonFavorites.push(pokemon);
+        this.pokemonFavorites = [...this.pokemonFavorites, pokemon];
       } else {
         this.pokemonFavorites = this.pokemonFavorites.filter(
           (fav) => fav.name !== pokemon.name
@@ -85,7 +86,7 @@ export const useStore = defineStore("store", {
       }
 
       if (this.pokemonFavorites.length === 0) {
-        this.showFavorites = false;
+        this.hideFavorites();
       }
 
       localStorage.setItem(
@@ -112,6 +113,16 @@ export const useStore = defineStore("store", {
             .join(", ")
         : name;
     },
+
+    loadMorePokemons() {
+      const totalPokemons = this.showFavorites
+        ? this.filteredFavorites.length
+        : this.filteredPokemons.length;
+
+      if (this.visibleCount < totalPokemons) {
+        this.visibleCount += 20;
+      }
+    },
   },
 
   getters: {
@@ -137,7 +148,7 @@ export const useStore = defineStore("store", {
       const pokemons = state.showFavorites
         ? state.filteredFavorites
         : state.filteredPokemons;
-      return pokemons;
+      return pokemons.slice(0, state.visibleCount);
     },
   },
 });
