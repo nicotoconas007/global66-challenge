@@ -57,4 +57,4 @@ Limpia la información del Pokémon seleccionado.
 ### Getters (getters):
 - filteredPokemons: Retorna los Pokémon según el término de búsqueda.
 - filteredFavorites: Filtra los Pokémon favoritos según el término de búsqueda.
-pokemonsToDisplay: Retorna la lista de Pokémon a mostrar, dependiendo de si se están viendo todos o solo los favoritos, respetando el límite de visualización definido por visibleCount.
+- pokemonsToDisplay: Retorna la lista de Pokémon a mostrar, dependiendo de si se están viendo todos o solo los favoritos, respetando el límite de visualización definido por visibleCount.
